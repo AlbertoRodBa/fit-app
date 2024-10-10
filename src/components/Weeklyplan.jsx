@@ -1,32 +1,37 @@
 import React from 'react';
 
 const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
+  const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
+  
+  // Agrupamos los ejercicios por día
+  const groupedExercises = daysOfWeek.reduce((acc, day) => {
+    acc[day] = exercises.filter(exercise => exercise.day === day);
+    return acc;
+  }, {});
+
   return (
     <div>
       <h2>Plan Semanal</h2>
-      <ul>
-        {exercises.map((exercise) => (
-          <li key={exercise.id} style={{ display: 'flex', alignItems: 'center', marginBottom: '10px' }}>
-            <input
-              type="checkbox"
-              checked={exercise.completed}
-              onChange={() => onToggleComplete(exercise.id)}
-              style={{ marginRight: '10px' }}
-            />
-            <span
-              style={{
-                textDecoration: exercise.completed ? 'line-through' : 'none',
-                flexGrow: 1
-              }}
-            >
-              {exercise.name} - {exercise.type}
-            </span>
-            <button onClick={() => onRemoveExercise(exercise.id)} style={{ marginLeft: '10px' }}>
-              Eliminar
-            </button>
-          </li>
-        ))}
-      </ul>
+      {daysOfWeek.map(day => (
+        <div key={day}>
+          <h3>{day}</h3>
+          <ul>
+            {groupedExercises[day].map(exercise => (
+              <li key={exercise.name} className={exercise.completed ? 'completed' : ''}>
+                <div className="checkbox-container">
+                  <input 
+                    type="checkbox" 
+                    checked={exercise.completed} 
+                    onChange={() => onToggleComplete(exercise.name)} 
+                  />
+                  {exercise.name} - {exercise.type}
+                </div>
+                <button className="delete-button" onClick={() => onRemoveExercise(exercise.name)}>Eliminar</button>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
     </div>
   );
 };

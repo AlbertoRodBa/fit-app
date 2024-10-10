@@ -107,7 +107,7 @@ button:focus-visible {
 }
 
 .delete-button {
-  background-color: #e63946;
+  background-color: #314356;
   color: white;
   padding: 0.4em 0.8em;
   border-radius: 4px;
@@ -115,7 +115,7 @@ button:focus-visible {
   transition: background-color 0.25s;
 }
 .delete-button:hover {
-  background-color: #d62828;
+  background-color: #5e6d93;
 }
 
 @media (prefers-color-scheme: light) {

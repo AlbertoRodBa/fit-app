@@ -2,13 +2,18 @@ import React, { useState } from 'react';
 
 const ExerciseForm = ({ onAddExercise }) => {
   const [name, setName] = useState('');
-  const [type, setType] = useState('Hombros'); // Tipo por defecto
+  const [type, setType] = useState('');
+  const [day, setDay] = useState('Lunes'); // Valor por defecto
+
+  const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name) return; // No permitir agregar ejercicios sin nombre
-    onAddExercise({ name, type, completed: false });
-    setName(''); // Limpiar el nombre del ejercicio después de agregarlo
+    if (!name || !type) return; // No permitir agregar ejercicios vacíos
+    onAddExercise({ name, type, day }); // Añadir el día a los ejercicios
+    setName('');
+    setType('');
+    setDay('Lunes'); // Resetear al día por defecto
   };
 
   return (
@@ -20,14 +25,17 @@ const ExerciseForm = ({ onAddExercise }) => {
         onChange={(e) => setName(e.target.value)} 
         required 
       />
-      <select value={type} onChange={(e) => setType(e.target.value)}>
-        <option value="Hombros">Hombros</option>
-        <option value="Espalda">Espalda</option>
-        <option value="Abdominales">Abdominales</option>
-        <option value="Piernas">Piernas</option>
-        <option value="Antebrazos">Antebrazos</option>
-        <option value="Cardio">Cardio</option>
-        {/* Agrega más opciones según sea necesario */}
+      <input 
+        type="text" 
+        placeholder="Tipo de ejercicio" 
+        value={type} 
+        onChange={(e) => setType(e.target.value)} 
+        required 
+      />
+      <select value={day} onChange={(e) => setDay(e.target.value)}>
+        {daysOfWeek.map((day) => (
+          <option key={day} value={day}>{day}</option>
+        ))}
       </select>
       <button type="submit">Agregar Ejercicio</button>
     </form>
