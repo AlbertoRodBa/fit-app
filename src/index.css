@@ -1,3 +1,7 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
@@ -11,15 +15,6 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
 body {
   margin: 0;
   display: flex;
@@ -28,48 +23,53 @@ body {
   justify-content: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  padding: 20px;
+  padding: 10px;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 5vw;
   line-height: 1.1;
   color: #fff;
+  text-align: center;
 }
 
-input {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  padding: 0.5em;
-  margin-right: 10px;
-  width: 200px;
-}
-
+input,
 select {
   border: 1px solid #ccc;
   border-radius: 4px;
   padding: 0.5em;
-  margin-right: 10px;
-  width: 220px;
+  margin: 5px 0;
+  width: 100%;
+  max-width: 220px;
 }
 
 ul {
   list-style-type: none;
   padding: 0;
   width: 100%;
-  max-width: 600px; /* Ajusta el ancho del contenedor de la lista */
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex-wrap: wrap; /* Permite el envolvimiento de elementos si es necesario */
 }
 
 li {
-  padding: 0.5em 0;
+  padding: 0.5em;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start; /* Cambiado a flex-start para que el contenido no se separe */
   border-bottom: 1px solid #ccc;
   background-color: #1a1a1a;
   border-radius: 4px;
   margin-bottom: 10px;
+  width: 100%;
+  max-width: 600px;
+  white-space: nowrap; /* Evita saltos de línea en el texto */
+  overflow: hidden; /* Oculta cualquier contenido desbordante */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos si el texto es demasiado largo */
 }
+
 
 li.completed {
   text-decoration: line-through;
@@ -82,28 +82,26 @@ li.completed {
 }
 
 input[type="checkbox"] {
-  transform: scale(1.2); /* Agranda el checkbox */
+  transform: scale(1.2);
   margin-right: 10px;
 }
 
 button {
   border-radius: 8px;
   border: 1px solid transparent;
-  padding: 0.6em 1.2em;
+  padding: 0.8em 1.5em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
   background-color: #1a1a1a;
+  color: white;
   cursor: pointer;
   transition: border-color 0.25s;
   margin-top: 10px;
+  display: block;
 }
+
 button:hover {
   border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
 }
 
 .delete-button {
@@ -113,20 +111,30 @@ button:focus-visible {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s;
+  width: auto;
+  margin-left: 10px; /* Ajusta este valor según sea necesario */
 }
+
 .delete-button:hover {
   background-color: #5e6d93;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  h1 {
+    font-size: 2.5em;
   }
-  a:hover {
-    color: #747bff;
-  }
+
+  input,
+  select,
   button {
-    background-color: #f9f9f9;
+    width: 100%;
+    max-width: none;
   }
 }
