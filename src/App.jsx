@@ -1,26 +1,33 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import WeeklyPlan from "./components/WeeklyPlan";
 import ExerciseForm from "./components/ExerciseForm";
-import exercisesData from "./data/exercises.json"; // Importa el archivo JSON
 
 const App = () => {
-  const [exercises, setExercises] = useState(exercisesData); // Inicializa con los ejercicios del JSON
+  const [exercises, setExercises] = useState(() => {
+    // Cargar ejercicios desde localStorage o inicializar con un array vacío
+    const storedExercises = localStorage.getItem("exercises");
+    return storedExercises ? JSON.parse(storedExercises) : [];
+  });
 
   const handleAddExercise = (exercise) => {
     const newExercise = { id: Date.now(), ...exercise, completed: false };
-    setExercises((prevExercises) => [...prevExercises, newExercise]);
+    const updatedExercises = [...exercises, newExercise];
+    setExercises(updatedExercises);
+    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
   };
 
   const handleToggleComplete = (exerciseName) => {
-    setExercises((prevExercises) =>
-      prevExercises.map((exercise) =>
-        exercise.name === exerciseName ? { ...exercise, completed: !exercise.completed } : exercise
-      )
+    const updatedExercises = exercises.map((exercise) =>
+      exercise.name === exerciseName ? { ...exercise, completed: !exercise.completed } : exercise
     );
+    setExercises(updatedExercises);
+    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
   };
 
   const handleRemoveExercise = (exerciseName) => {
-    setExercises((prevExercises) => prevExercises.filter((exercise) => exercise.name !== exerciseName));
+    const updatedExercises = exercises.filter((exercise) => exercise.name !== exerciseName);
+    setExercises(updatedExercises);
+    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
   };
 
   return (
