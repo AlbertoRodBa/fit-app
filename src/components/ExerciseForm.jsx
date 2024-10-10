@@ -2,14 +2,13 @@ import React, { useState } from 'react';
 
 const ExerciseForm = ({ onAddExercise }) => {
   const [name, setName] = useState('');
-  const [type, setType] = useState('');
+  const [type, setType] = useState('Hombros'); // Tipo por defecto
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name || !type) return; // No permitir agregar ejercicios vacíos
-    onAddExercise({ name, type });
-    setName('');
-    setType('');
+    if (!name) return; // No permitir agregar ejercicios sin nombre
+    onAddExercise({ name, type, completed: false });
+    setName(''); // Limpiar el nombre del ejercicio después de agregarlo
   };
 
   return (
@@ -21,13 +20,15 @@ const ExerciseForm = ({ onAddExercise }) => {
         onChange={(e) => setName(e.target.value)} 
         required 
       />
-      <input 
-        type="text" 
-        placeholder="Tipo de ejercicio" 
-        value={type} 
-        onChange={(e) => setType(e.target.value)} 
-        required 
-      />
+      <select value={type} onChange={(e) => setType(e.target.value)}>
+        <option value="Hombros">Hombros</option>
+        <option value="Espalda">Espalda</option>
+        <option value="Abdominales">Abdominales</option>
+        <option value="Piernas">Piernas</option>
+        <option value="Antebrazos">Antebrazos</option>
+        <option value="Cardio">Cardio</option>
+        {/* Agrega más opciones según sea necesario */}
+      </select>
       <button type="submit">Agregar Ejercicio</button>
     </form>
   );

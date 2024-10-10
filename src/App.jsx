@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
-import WeeklyPlan from './components/WeeklyPlan';
-import ExerciseForm from './components/ExerciseForm';
-import { exercises as initialExercises } from './data/exercises';
+import React, { useState } from "react";
+import WeeklyPlan from "./components/WeeklyPlan";
+import ExerciseForm from "./components/ExerciseForm";
+import { exercises as initialExercises } from "./data/exercises";
 
 const App = () => {
   const [exercises, setExercises] = useState(initialExercises);
 
-  const addExercise = (newExercise) => {
-    setExercises((prevExercises) => [
-      ...prevExercises,
-      { id: prevExercises.length + 1, ...newExercise },
-    ]);
+  const handleAddExercise = (newExercise) => {
+    setExercises([...exercises, { id: exercises.length + 1, ...newExercise }]);
   };
 
-  const deleteExercise = (id) => {
-    setExercises((prevExercises) => 
-      prevExercises.filter(exercise => exercise.id !== id)
+  const handleToggleComplete = (exerciseId) => {
+    setExercises(
+      exercises.map((exercise) =>
+        exercise.id === exerciseId
+          ? { ...exercise, completed: !exercise.completed }
+          : exercise
+      )
     );
   };
 
+  const handleRemoveExercise = (exerciseId) => {
+    setExercises(exercises.filter((exercise) => exercise.id !== exerciseId));
+  };
+
   return (
-    <div className="App">
+    <div>
       <h1>Mi Plan de Ejercicios</h1>
-      <ExerciseForm onAddExercise={addExercise} />
-      <WeeklyPlan exercises={exercises} onDelete={deleteExercise} />
+      <ExerciseForm onAddExercise={handleAddExercise} />
+      <WeeklyPlan
+        exercises={exercises}
+        onToggleComplete={handleToggleComplete}
+        onRemoveExercise={handleRemoveExercise}
+      />
     </div>
   );
 };
