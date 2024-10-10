@@ -1,13 +1,14 @@
 import React, { useState } from "react";
 import WeeklyPlan from "./components/WeeklyPlan";
 import ExerciseForm from "./components/ExerciseForm";
-import { exercises as initialExercises } from "./data/exercises";
+import exercisesData from "./data/exercises.json"; // Importa el archivo JSON
 
 const App = () => {
-  const [exercises, setExercises] = useState(initialExercises);
+  const [exercises, setExercises] = useState(exercisesData); // Inicializa con los ejercicios del JSON
 
   const handleAddExercise = (exercise) => {
-    setExercises((prevExercises) => [...prevExercises, { ...exercise, completed: false }]);
+    const newExercise = { id: Date.now(), ...exercise, completed: false };
+    setExercises((prevExercises) => [...prevExercises, newExercise]);
   };
 
   const handleToggleComplete = (exerciseName) => {

@@ -1,0 +1,6 @@
+[
+    { "id": 1, "name": "Correr", "type": "Cardio", "day": "Lunes", "completed": false },
+    { "id": 2, "name": "Flexiones", "type": "Fuerza", "day": "Martes", "completed": false },
+    { "id": 3, "name": "Yoga", "type": "Flexibilidad", "day": "Miércoles", "completed": false }
+  ]
+  
