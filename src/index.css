@@ -2,11 +2,9 @@
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
-
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
-
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -25,14 +23,43 @@ a:hover {
 body {
   margin: 0;
   display: flex;
-  place-items: center;
+  flex-direction: column; /* Cambiar a columna */
+  align-items: center; /* Centrar horizontalmente */
+  justify-content: flex-start; /* Comenzar desde la parte superior */
   min-width: 320px;
   min-height: 100vh;
+  padding: 20px; /* Añadir padding alrededor del contenido */
 }
 
 h1 {
   font-size: 3.2em;
   line-height: 1.1;
+}
+
+input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 0.5em;
+  margin-right: 10px;
+  width: 200px; /* Ajusta según sea necesario */
+}
+
+ul {
+  list-style-type: none; /* Elimina los puntos de la lista */
+  padding: 0;
+}
+
+li {
+  padding: 0.5em 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #ccc;
+}
+
+li.completed {
+  text-decoration: line-through; /* Tacha los ejercicios completados */
+  color: #999;
 }
 
 button {
@@ -45,6 +72,7 @@ button {
   background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
+  margin-top: 10px; /* Añadir espacio entre el botón y el formulario */
 }
 button:hover {
   border-color: #646cff;

@@ -1,16 +1,11 @@
-// src/components/WeeklyPlan.jsx
 import React from 'react';
-import { exercises } from '../data/exercises';
+import ExerciseList from './ExerciseList';
 
-const WeeklyPlan = () => {
+const WeeklyPlan = ({ exercises, onDelete }) => {
   return (
     <div>
       <h2>Plan Semanal</h2>
-      <ul>
-        {exercises.map((exercise) => (
-          <li key={exercise.id}>{exercise.name} - {exercise.type}</li>
-        ))}
-      </ul>
+      <ExerciseList exercises={exercises} onDelete={onDelete} />
     </div>
   );
 };
