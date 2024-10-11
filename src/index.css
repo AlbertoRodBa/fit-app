@@ -9,12 +9,35 @@ body {
 }
 
 /* Estilo específico para el texto semi-bold */
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Comienza completamente transparente */
+  }
+  to {
+    opacity: 1; /* Termina completamente visible */
+  }
+}
+
 h1 {
-  font-size: 5vw;
+  font-size: 5vw; /* Tamaño de fuente responsive */
   line-height: 1.1;
-  color: #333333;
+  color: #ffffff; /* Color de texto */
   text-align: center;
-  font-weight: 800; /* Peso Extra Bold */
+  font-weight: 600; /* Peso Extra Bold */
+  animation: fadeIn 1s ease-in-out; /* Añade la animación de desvanecimiento */
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0; /* Comienza completamente transparente */
+  }
+  to {
+    opacity: 1; /* Termina completamente visible */
+  }
+}
+
+h1, svg {
+  animation: fadeIn 1s ease-in-out; /* Añade la animación de desvanecimiento */
 }
 
 :root {
@@ -45,7 +68,14 @@ body {
 
 
 h2, h3 {
-  color: #333333;
+  color: #6628b4;
+  font-weight: 600;
+}
+
+
+h2 {
+  color: #6628b4;
+    font-weight: 800; /* Peso Extra Bold */
 }
 
 input,
@@ -75,8 +105,8 @@ li {
   align-items: center;
   justify-content: flex-start;
   border-bottom: 1px solid #ccc;
-  background-color: #e1ddf3;
-  color: #333333;
+  background-color: #edeafb;
+  color: #4c087f;
   border-radius: 4px;
   margin-bottom: 10px;
   width: 100%;
@@ -88,7 +118,7 @@ li {
 
 li.completed {
   text-decoration: line-through;
-  color: #999;
+  color: #6d3fe2
 }
 
 .checkbox-container {
@@ -119,7 +149,6 @@ button {
 button:hover {
   background-color: #592BCC; /* Tono más oscuro en hover */
 }
-
 .delete-button {
   background-color: #733BFF; /* Color nuevo */
   color: white;
@@ -129,11 +158,14 @@ button:hover {
   transition: background-color 0.25s;
   width: auto;
   margin-left: 10px;
+  margin-bottom: 8px;
+  text-decoration: none !important; /* Evita el tachado */
 }
 
 .delete-button:hover {
   background-color: #592BCC; /* Hover ajustado */
 }
+
 
 .container {
   display: flex;
@@ -158,7 +190,7 @@ input[type="checkbox"] {
 }
 
 input[type="checkbox"]:checked {
-  background-color: #646cff;
+  background-color: #592BCC;
   border: none;
   display: flex;
   justify-content: center;
@@ -174,7 +206,6 @@ input[type="checkbox"]:checked::before {
   left: 50%;
   transform: translate(-50%, -50%);
 }
-
 
 
 @media (max-width: 600px) {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import WeeklyPlan from "./components/WeeklyPlan";
 import ExerciseForm from "./components/ExerciseForm";
-import Navbar from "./components/Navbar"; // Asegúrate de que la ruta sea correcta
+import Navbar from "./components/Navbar"; 
 
 const App = () => {
   const [exercises, setExercises] = useState(() => {
@@ -33,8 +33,8 @@ const App = () => {
 
   return (
     <div>
-      <Navbar /> {/* Agrega la barra de navegación aquí */}
-      <h1 className="text-2xl text-center">Mi Plan de Ejercicios</h1> {/* Puedes cambiar el título si lo deseas */}
+      <Navbar /> {/*  barra de navegación aquí */}
+      <h1 className="text-2xl text-center">Mi Plan de Ejercicios</h1> {/* título */}
       <ExerciseForm onAddExercise={handleAddExercise} />
       <WeeklyPlan 
         exercises={exercises} 

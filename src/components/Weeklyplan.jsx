@@ -3,7 +3,7 @@ import React from 'react';
 const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
   const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
   
-  // Agrupamos los ejercicios por día
+  // Se agrupan los ejercicios por día
   const groupedExercises = daysOfWeek.reduce((acc, day) => {
     acc[day] = exercises.filter(exercise => exercise.day === day);
     return acc;
@@ -31,7 +31,9 @@ const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
                 </li>
               ))
             ) : (
-              <li>No hay ejercicios programados para este día.</li>
+<li style={{ color: '#6f7590', fontStyle: 'italic' }}>
+  No hay ejercicios programados para este día.
+</li>
             )}
           </ul>
         </div>

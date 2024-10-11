@@ -8,20 +8,27 @@ const ExerciseItem = ({ exercise, onDelete }) => {
   };
 
   return (
-    <div className="exercise-item" style={{ display: 'flex', alignItems: 'center' }}>
+    <li className={`exercise-item ${completed ? 'completed' : ''}`} style={{ display: 'flex', alignItems: 'center' }}>
       <input 
         type="checkbox" 
         checked={completed} 
         onChange={handleToggle} 
+        className="checkbox-container" 
         style={{ marginRight: '10px' }} 
       />
-      <span style={{ textDecoration: completed ? 'line-through' : 'none' }}>
+      {/* El tachado se aplicará solo a este span */}
+      <span style={{ flexGrow: 1 }}>
         {exercise.name} - {exercise.type}
       </span>
-      <button onClick={() => onDelete(exercise.id)} style={{ marginLeft: 'auto' }}>
+      {/* El botón "Eliminar" no hereda el tachado */}
+      <button 
+        className="delete-button"
+        onClick={() => onDelete(exercise.id)}
+        style={{ marginLeft: '10px' }}
+      >
         Eliminar
       </button>
-    </div>
+    </li>
   );
 };
 

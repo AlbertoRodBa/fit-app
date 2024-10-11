@@ -29,7 +29,7 @@ const ExerciseForm = ({ onAddExercise }) => {
         />
         <input 
           type="text" 
-          placeholder="Tipo de ejercicio" 
+          placeholder="Zona muscular" 
           value={type} 
           onChange={(e) => setType(e.target.value)} 
           required 
