@@ -1,14 +1,29 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+body {
+  font-family: 'Poppins', sans-serif; /* Fuente por defecto para todo el cuerpo */
+}
+
+/* Estilo específico para el texto semi-bold */
+h1 {
+  font-size: 5vw;
+  line-height: 1.1;
+  color: #333333;
+  text-align: center;
+  font-weight: 800; /* Peso Extra Bold */
+}
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
   color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+  color: rgba(34, 34, 34, 0.87);
+  background-color: #f5f5f5;
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -24,13 +39,13 @@ body {
   min-width: 320px;
   min-height: 100vh;
   padding: 10px;
+  background-color: #ffffff;
 }
 
-h1 {
-  font-size: 5vw;
-  line-height: 1.1;
-  color: #fff;
-  text-align: center;
+
+
+h2, h3 {
+  color: #333333;
 }
 
 input,
@@ -51,25 +66,25 @@ ul {
   display: flex;
   flex-direction: column;
   align-items: center;
-  flex-wrap: wrap; /* Permite el envolvimiento de elementos si es necesario */
+  flex-wrap: wrap;
 }
 
 li {
   padding: 0.5em;
   display: flex;
   align-items: center;
-  justify-content: flex-start; /* Cambiado a flex-start para que el contenido no se separe */
+  justify-content: flex-start;
   border-bottom: 1px solid #ccc;
-  background-color: #1a1a1a;
+  background-color: #e1ddf3;
+  color: #333333;
   border-radius: 4px;
   margin-bottom: 10px;
   width: 100%;
   max-width: 600px;
-  white-space: nowrap; /* Evita saltos de línea en el texto */
-  overflow: hidden; /* Oculta cualquier contenido desbordante */
-  text-overflow: ellipsis; /* Muestra puntos suspensivos si el texto es demasiado largo */
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
-
 
 li.completed {
   text-decoration: line-through;
@@ -86,37 +101,38 @@ input[type="checkbox"] {
   margin-right: 10px;
 }
 
+/* Botones */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.8em 1.5em;
   font-size: 1em;
   font-weight: 500;
-  background-color: #1a1a1a;
-  color: white;
+  background-color: #733BFF; /* Color nuevo */
+  color: #ffffff;
   cursor: pointer;
-  transition: border-color 0.25s;
+  transition: background-color 0.25s, border-color 0.25s;
   margin-top: 10px;
   display: block;
 }
 
 button:hover {
-  border-color: #646cff;
+  background-color: #592BCC; /* Tono más oscuro en hover */
 }
 
 .delete-button {
-  background-color: #314356;
+  background-color: #733BFF; /* Color nuevo */
   color: white;
   padding: 0.4em 0.8em;
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.25s;
   width: auto;
-  margin-left: 10px; /* Ajusta este valor según sea necesario */
+  margin-left: 10px;
 }
 
 .delete-button:hover {
-  background-color: #5e6d93;
+  background-color: #592BCC; /* Hover ajustado */
 }
 
 .container {
@@ -125,6 +141,41 @@ button:hover {
   justify-content: space-between;
   width: 100%;
 }
+
+/* Checkbox estilos */
+input[type="checkbox"] {
+  appearance: none;
+  -webkit-appearance: none;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 16px;
+  height: 16px;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  transform: scale(1.2);
+}
+
+input[type="checkbox"]:checked {
+  background-color: #646cff;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+input[type="checkbox"]:checked::before {
+  content: '✓';
+  color: white;
+  font-size: 12px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
 
 @media (max-width: 600px) {
   h1 {

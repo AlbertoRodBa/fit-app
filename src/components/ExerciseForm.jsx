@@ -17,39 +17,41 @@ const ExerciseForm = ({ onAddExercise }) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="mb-4 flex flex-col md:flex-row md:items-center md:space-x-4">
-      <input 
-        type="text" 
-        placeholder="Nombre del ejercicio" 
-        value={name} 
-        onChange={(e) => setName(e.target.value)} 
-        required 
-        className="border border-gray-300 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
-      />
-      <input 
-        type="text" 
-        placeholder="Tipo de ejercicio" 
-        value={type} 
-        onChange={(e) => setType(e.target.value)} 
-        required 
-        className="border border-gray-300 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
-      />
-      <select 
-        value={day} 
-        onChange={(e) => setDay(e.target.value)} 
-        className="border border-gray-300 rounded px-4 py-2 mb-2 md:mb-0"
-      >
-        {daysOfWeek.map((day) => (
-          <option key={day} value={day}>{day}</option>
-        ))}
-      </select>
-      <button 
-        type="submit" 
-        className="bg-gray-800 text-white rounded px-4 py-2 hover:bg-gray-700 transition duration-200 w-full md:w-auto"
-      >
-        Agregar Ejercicio
-      </button>
-    </form>
+    <div className="mb-4 pt-10"> {/* Agrega un padding superior al contenedor */}
+      <form onSubmit={handleSubmit} className="flex flex-col md:flex-row md:items-center md:space-x-4">
+        <input 
+          type="text" 
+          placeholder="Nombre del ejercicio" 
+          value={name} 
+          onChange={(e) => setName(e.target.value)} 
+          required 
+          className="border border-gray-300 bg-white text-gray-800 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
+        />
+        <input 
+          type="text" 
+          placeholder="Tipo de ejercicio" 
+          value={type} 
+          onChange={(e) => setType(e.target.value)} 
+          required 
+          className="border border-gray-300 bg-white text-gray-800 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
+        />
+        <select 
+          value={day} 
+          onChange={(e) => setDay(e.target.value)} 
+          className="border border-gray-300 bg-white text-gray-800 rounded px-4 py-2 mb-2 md:mb-0"
+        >
+          {daysOfWeek.map((day) => (
+            <option key={day} value={day}>{day}</option>
+          ))}
+        </select>
+        <button 
+          type="submit" 
+          className="bg-[#733BFF] text-white rounded px-4 py-2 hover:bg-[#592BCC] transition duration-200 w-full md:w-auto"
+        >
+          Agregar Ejercicio
+        </button>
+      </form>
+    </div>
   );
 };
 
