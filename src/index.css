@@ -1,59 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
 body {
   font-family: 'Poppins', sans-serif; /* Fuente por defecto para todo el cuerpo */
-}
-
-/* Estilo específico para el texto semi-bold */
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* Comienza completamente transparente */
-  }
-  to {
-    opacity: 1; /* Termina completamente visible */
-  }
-}
-
-h1 {
-  font-size: 5vw; /* Tamaño de fuente responsive */
-  line-height: 1.1;
-  color: #ffffff; /* Color de texto */
-  text-align: center;
-  font-weight: 600; /* Peso Extra Bold */
-  animation: fadeIn 1s ease-in-out; /* Añade la animación de desvanecimiento */
-}
-
-@keyframes fadeIn {
-  from {
-    opacity: 0; /* Comienza completamente transparente */
-  }
-  to {
-    opacity: 1; /* Termina completamente visible */
-  }
-}
-
-h1, svg {
-  animation: fadeIn 1s ease-in-out; /* Añade la animación de desvanecimiento */
-}
-
-:root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
-  color-scheme: light dark;
-  color: rgba(34, 34, 34, 0.87);
-  background-color: #f5f5f5;
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-body {
   margin: 0;
   display: flex;
   flex-direction: column;
@@ -63,21 +15,35 @@ body {
   min-height: 100vh;
   padding: 10px;
   background-color: #ffffff;
+  color: rgba(34, 34, 34, 0.87);
 }
 
+/* Animación de desvanecimiento */
+@keyframes fadeIn {
+  from { opacity: 0; } /* Comienza completamente transparente */
+  to { opacity: 1; } /* Termina completamente visible */
+}
 
+/* Estilos de encabezados */
+h1 {
+  font-size: 5vw; /* Tamaño de fuente responsive */
+  line-height: 1.1;
+  color: #ffffff; /* Color de texto */
+  text-align: center;
+  font-weight: 600; /* Peso Extra Bold */
+  animation: fadeIn 1s ease-in-out; /* Añade la animación de desvanecimiento */
+}
 
 h2, h3 {
   color: #6628b4;
   font-weight: 600;
 }
 
-
 h2 {
-  color: #6628b4;
-    font-weight: 800; /* Peso Extra Bold */
+  font-weight: 800; /* Peso Extra Bold */
 }
 
+/* Estilos de entrada y selección */
 input,
 select {
   border: 1px solid #ccc;
@@ -88,6 +54,7 @@ select {
   max-width: 220px;
 }
 
+/* Estilos de la lista */
 ul {
   list-style-type: none;
   padding: 0;
@@ -103,7 +70,7 @@ li {
   padding: 0.5em;
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: space-between; /* Espacio entre elementos */
   border-bottom: 1px solid #ccc;
   background-color: #edeafb;
   color: #4c087f;
@@ -111,27 +78,24 @@ li {
   margin-bottom: 10px;
   width: 100%;
   max-width: 600px;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  white-space: nowrap; /* No permite el salto de línea */
+  overflow: hidden; /* Oculta el texto que desborda */
+  text-overflow: ellipsis; /* Muestra puntos suspensivos */
 }
 
 li.completed {
   text-decoration: line-through;
-  color: #6d3fe2
+  color: #6d3fe2;
 }
 
+/* Estilos del contenedor de la casilla de verificación */
 .checkbox-container {
   display: flex;
   align-items: center;
+  flex-grow: 1; /* Permite que la caja de verificación ocupe el espacio disponible */
 }
 
-input[type="checkbox"] {
-  transform: scale(1.2);
-  margin-right: 10px;
-}
-
-/* Botones */
+/* Estilos de botones */
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -149,6 +113,7 @@ button {
 button:hover {
   background-color: #592BCC; /* Tono más oscuro en hover */
 }
+
 .delete-button {
   background-color: #733BFF; /* Color nuevo */
   color: white;
@@ -166,18 +131,9 @@ button:hover {
   background-color: #592BCC; /* Hover ajustado */
 }
 
-
-.container {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-/* Checkbox estilos */
+/* Estilos de la caja de verificación */
 input[type="checkbox"] {
   appearance: none;
-  -webkit-appearance: none;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 4px;
@@ -207,7 +163,7 @@ input[type="checkbox"]:checked::before {
   transform: translate(-50%, -50%);
 }
 
-
+/* Media queries */
 @media (max-width: 600px) {
   h1 {
     font-size: 2.5em;

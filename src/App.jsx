@@ -31,11 +31,16 @@ const App = () => {
     localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
   };
 
+  const handleResetExercises = () => {
+    setExercises([]); // Reiniciar la lista de ejercicios
+    localStorage.removeItem("exercises"); // Limpiar el localStorage
+  };
+
   return (
     <div>
       <Navbar /> {/*  barra de navegación aquí */}
       <h1 className="text-2xl text-center">Mi Plan de Ejercicios</h1> {/* título */}
-      <ExerciseForm onAddExercise={handleAddExercise} />
+      <ExerciseForm onAddExercise={handleAddExercise} onResetExercises={handleResetExercises} />
       <WeeklyPlan 
         exercises={exercises} 
         onToggleComplete={handleToggleComplete} 

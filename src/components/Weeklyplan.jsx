@@ -31,9 +31,9 @@ const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
                 </li>
               ))
             ) : (
-<li style={{ color: '#6f7590', fontStyle: 'italic' }}>
-  No hay ejercicios programados para este día.
-</li>
+              <li style={{ color: '#6f7590', fontStyle: 'italic' }}>
+                No hay ejercicios programados para este día.
+              </li>
             )}
           </ul>
         </div>

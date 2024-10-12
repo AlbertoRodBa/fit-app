@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-const ExerciseForm = ({ onAddExercise }) => {
+const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
   const [name, setName] = useState('');
   const [type, setType] = useState('');
   const [day, setDay] = useState('Lunes'); // Valor por defecto
@@ -51,6 +51,15 @@ const ExerciseForm = ({ onAddExercise }) => {
           Agregar Ejercicio
         </button>
       </form>
+      {/* Asegúrate de que el botón Restablecer esté alineado con el botón Agregar Ejercicio */}
+      <div className="mt-4 flex justify-center"> {/* Flex para centrar el botón */}
+        <button 
+          onClick={onResetExercises} // Llama a la función de restablecer
+          className="bg-[#733BFF] text-white rounded px-4 py-2 transition duration-200 w-auto hover:bg-[#592BCC]"
+        >
+          Restablecer
+        </button>
+      </div>
     </div>
   );
 };
