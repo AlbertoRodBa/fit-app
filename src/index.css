@@ -5,17 +5,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
 
 body {
-  font-family: 'Poppins', sans-serif; /* Fuente por defecto para todo el cuerpo */
+  font-family: 'Poppins', sans-serif;
   margin: 0;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
   min-width: 320px;
   min-height: 100vh;
-  padding: 10px;
-  background-color: #ffffff;
-  color: rgba(34, 34, 34, 0.87);
 }
 
 /* Animación de desvanecimiento */
@@ -41,6 +34,12 @@ h2, h3 {
 
 h2 {
   font-weight: 800; /* Peso Extra Bold */
+}
+
+/* Modo oscuro: títulos en blanco */
+.dark h2,
+.dark h3 {
+  color: white;
 }
 
 /* Estilos de entrada y selección */

@@ -1,52 +1,67 @@
 import React, { useState, useEffect } from "react";
 import WeeklyPlan from "./components/WeeklyPlan";
 import ExerciseForm from "./components/ExerciseForm";
-import Navbar from "./components/Navbar"; 
+import Navbar from "./components/Navbar";
 
 const App = () => {
   const [exercises, setExercises] = useState(() => {
-    // Cargar ejercicios desde localStorage o inicializar con un array vacío
     const storedExercises = localStorage.getItem("exercises");
     return storedExercises ? JSON.parse(storedExercises) : [];
   });
 
+  // Estado para el tema: 'light' o 'dark'
+  const [theme, setTheme] = useState(() => {
+    return localStorage.getItem("theme") || "light";
+  });
+
+  // Cambiar tema y guardarlo en localStorage
+  const toggleTheme = () => {
+    const newTheme = theme === "light" ? "dark" : "light";
+    setTheme(newTheme);
+    localStorage.setItem("theme", newTheme);
+  };
+
+  // Guardar ejercicios en localStorage cuando cambien
+  useEffect(() => {
+    localStorage.setItem("exercises", JSON.stringify(exercises));
+  }, [exercises]);
+
+  // Agregar o quitar clase 'dark' en <html> según el tema
+  useEffect(() => {
+    if (theme === "dark") {
+      document.documentElement.classList.add("dark");
+    } else {
+      document.documentElement.classList.remove("dark");
+    }
+  }, [theme]);
+
+  // Handler para agregar ejercicios
   const handleAddExercise = (exercise) => {
     const newExercise = { id: Date.now(), ...exercise, completed: false };
-    const updatedExercises = [...exercises, newExercise];
-    setExercises(updatedExercises);
-    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
-  };
-
-  const handleToggleComplete = (exerciseName) => {
-    const updatedExercises = exercises.map((exercise) =>
-      exercise.name === exerciseName ? { ...exercise, completed: !exercise.completed } : exercise
-    );
-    setExercises(updatedExercises);
-    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
-  };
-
-  const handleRemoveExercise = (exerciseName) => {
-    const updatedExercises = exercises.filter((exercise) => exercise.name !== exerciseName);
-    setExercises(updatedExercises);
-    localStorage.setItem("exercises", JSON.stringify(updatedExercises)); // Actualizar localStorage
-  };
-
-  const handleResetExercises = () => {
-    setExercises([]); // Reiniciar la lista de ejercicios
-    localStorage.removeItem("exercises"); // Limpiar el localStorage
+    setExercises((prev) => [...prev, newExercise]);
   };
 
   return (
-    <div>
-      <Navbar /> {/*  barra de navegación aquí */}
-      <h1 className="text-2xl text-center">Mi Plan de Ejercicios</h1> {/* título */}
-      <ExerciseForm onAddExercise={handleAddExercise} onResetExercises={handleResetExercises} />
-      <WeeklyPlan 
-        exercises={exercises} 
-        onToggleComplete={handleToggleComplete} 
-        onRemoveExercise={handleRemoveExercise} 
-      />
-    </div>
+    <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors flex flex-col items-center px-4">
+    <Navbar theme={theme} onToggleTheme={toggleTheme} />
+  <div className="pt-20 w-full max-w-3xl">
+    <ExerciseForm onAddExercise={handleAddExercise} />
+    <WeeklyPlan
+      exercises={exercises}
+      onToggleComplete={(name) => {
+        const updated = exercises.map((ex) =>
+          ex.name === name ? { ...ex, completed: !ex.completed } : ex
+        );
+        setExercises(updated);
+      }}
+      onRemoveExercise={(name) => {
+        const filtered = exercises.filter((ex) => ex.name !== name);
+        setExercises(filtered);
+      }}
+    />
+  </div>
+</div>
+
   );
 };
 
