@@ -9,6 +9,10 @@ const App = () => {
     return storedExercises ? JSON.parse(storedExercises) : [];
   });
 
+  const handleResetExercises = () => {
+    setExercises([]);
+  };
+
   // Estado para el tema: 'light' o 'dark'
   const [theme, setTheme] = useState(() => {
     return localStorage.getItem("theme") || "light";
@@ -43,25 +47,27 @@ const App = () => {
 
   return (
     <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors flex flex-col items-center px-4">
-    <Navbar theme={theme} onToggleTheme={toggleTheme} />
-  <div className="pt-20 w-full max-w-3xl">
-    <ExerciseForm onAddExercise={handleAddExercise} />
-    <WeeklyPlan
-      exercises={exercises}
-      onToggleComplete={(name) => {
-        const updated = exercises.map((ex) =>
-          ex.name === name ? { ...ex, completed: !ex.completed } : ex
-        );
-        setExercises(updated);
-      }}
-      onRemoveExercise={(name) => {
-        const filtered = exercises.filter((ex) => ex.name !== name);
-        setExercises(filtered);
-      }}
-    />
-  </div>
-</div>
-
+      <Navbar theme={theme} onToggleTheme={toggleTheme} />
+      <div className="pt-20 w-full max-w-3xl">
+        <ExerciseForm
+          onAddExercise={handleAddExercise}
+          onResetExercises={handleResetExercises}
+        />
+        <WeeklyPlan
+          exercises={exercises}
+          onToggleComplete={(name) => {
+            const updated = exercises.map((ex) =>
+              ex.name === name ? { ...ex, completed: !ex.completed } : ex
+            );
+            setExercises(updated);
+          }}
+          onRemoveExercise={(name) => {
+            const filtered = exercises.filter((ex) => ex.name !== name);
+            setExercises(filtered);
+          }}
+        />
+      </div>
+    </div>
   );
 };
 
