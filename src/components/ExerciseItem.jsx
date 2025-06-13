@@ -1,26 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 
-const ExerciseItem = ({ exercise, onDelete }) => {
-  const [completed, setCompleted] = useState(false);
-
-  const handleToggle = () => {
-    setCompleted(!completed);
-  };
-
+const ExerciseItem = ({ exercise, onDelete, onToggleComplete }) => {
   return (
-    <li className={`exercise-item ${completed ? 'completed' : ''}`} style={{ display: 'flex', alignItems: 'center' }}>
+    <li className={`exercise-item ${exercise.completed ? 'completed' : ''}`} style={{ display: 'flex', alignItems: 'center' }}>
       <input 
         type="checkbox" 
-        checked={completed} 
-        onChange={handleToggle} 
+        checked={exercise.completed} 
+        onChange={() => onToggleComplete(exercise.id)} 
         className="checkbox-container" 
         style={{ marginRight: '10px' }} 
       />
-      {/* El tachado se aplicará solo a este span */}
       <span style={{ flexGrow: 1 }}>
         {exercise.name} - {exercise.type}
       </span>
-      {/* El botón "Eliminar" no hereda el tachado */}
       <button 
         className="delete-button"
         onClick={() => onDelete(exercise.id)}

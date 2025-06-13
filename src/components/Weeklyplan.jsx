@@ -3,7 +3,6 @@ import React from 'react';
 const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
   const daysOfWeek = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "Sábado", "Domingo"];
   
-  // Se agrupan los ejercicios por día
   const groupedExercises = daysOfWeek.reduce((acc, day) => {
     acc[day] = exercises.filter(exercise => exercise.day === day);
     return acc;
@@ -23,11 +22,11 @@ const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
                     <input 
                       type="checkbox" 
                       checked={exercise.completed} 
-                      onChange={() => onToggleComplete(exercise.name)} 
+                      onChange={() => onToggleComplete(exercise.id)} 
                     />
                     {exercise.name} - {exercise.type}
                   </div>
-                  <button className="delete-button" onClick={() => onRemoveExercise(exercise.name)}>Eliminar</button>
+                  <button className="delete-button" onClick={() => onRemoveExercise(exercise.id)}>Eliminar</button>
                 </li>
               ))
             ) : (

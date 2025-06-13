@@ -45,6 +45,20 @@ const App = () => {
     setExercises((prev) => [...prev, newExercise]);
   };
 
+  // Handler para marcar como completado o no un ejercicio por id
+  const handleToggleComplete = (id) => {
+    const updated = exercises.map((ex) =>
+      ex.id === id ? { ...ex, completed: !ex.completed } : ex
+    );
+    setExercises(updated);
+  };
+
+  // Eliminar un ejercicio por id
+  const handleRemoveExercise = (id) => {
+    const filtered = exercises.filter((ex) => ex.id !== id);
+    setExercises(filtered);
+  };
+
   return (
     <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors flex flex-col items-center px-4">
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
@@ -53,19 +67,20 @@ const App = () => {
           onAddExercise={handleAddExercise}
           onResetExercises={handleResetExercises}
         />
-        <WeeklyPlan
-          exercises={exercises}
-          onToggleComplete={(name) => {
-            const updated = exercises.map((ex) =>
-              ex.name === name ? { ...ex, completed: !ex.completed } : ex
-            );
-            setExercises(updated);
-          }}
-          onRemoveExercise={(name) => {
-            const filtered = exercises.filter((ex) => ex.name !== name);
-            setExercises(filtered);
-          }}
-        />
+<WeeklyPlan
+  exercises={exercises}
+  onToggleComplete={(id) => {
+    const updated = exercises.map((ex) =>
+      ex.id === id ? { ...ex, completed: !ex.completed } : ex
+    );
+    setExercises(updated);
+  }}
+  onRemoveExercise={(id) => {
+    const filtered = exercises.filter((ex) => ex.id !== id);
+    setExercises(filtered);
+  }}
+/>
+
       </div>
     </div>
   );

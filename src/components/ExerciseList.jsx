@@ -1,22 +1,27 @@
 import React from 'react';
-import ExerciseItem from './ExerciseItem';
 
-const ExerciseList = ({ exercises, onDelete }) => {
+const ExerciseItem = ({ exercise, onDelete, onToggleComplete }) => {
   return (
-    <div className="exercise-list">
-      {exercises.length > 0 ? (
-        exercises.map((exercise) => (
-          <ExerciseItem 
-            key={exercise.id} 
-            exercise={exercise} 
-            onDelete={onDelete} 
-          />
-        ))
-      ) : (
-        <p>No hay ejercicios disponibles.</p> // Mensaje si no hay ejercicios
-      )}
-    </div>
+    <li className={`exercise-item ${exercise.completed ? 'completed' : ''}`} style={{ display: 'flex', alignItems: 'center' }}>
+      <input 
+        type="checkbox" 
+        checked={exercise.completed} 
+        onChange={() => onToggleComplete(exercise.id)} 
+        className="checkbox-container" 
+        style={{ marginRight: '10px' }} 
+      />
+      <span style={{ flexGrow: 1 }}>
+        {exercise.name} - {exercise.type}
+      </span>
+      <button 
+        className="delete-button"
+        onClick={() => onDelete(exercise.id)}
+        style={{ marginLeft: '10px' }}
+      >
+        Eliminar
+      </button>
+    </li>
   );
 };
 
-export default ExerciseList;
+export default ExerciseItem;
