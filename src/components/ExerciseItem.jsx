@@ -10,12 +10,15 @@ const ExerciseItem = ({ exercise, onDelete, onToggleComplete }) => {
         className="checkbox-container" 
         style={{ marginRight: '10px' }} 
       />
-      <span style={{ flexGrow: 1 }}>
+      <span className="exercise-text" style={{ flexGrow: 1 }}>
         {exercise.name} - {exercise.type}
       </span>
       <button 
         className="delete-button"
-        onClick={() => onDelete(exercise.id)}
+        onClick={(e) => { 
+          e.stopPropagation(); 
+          onDelete(exercise.id);
+        }}
         style={{ marginLeft: '10px' }}
       >
         Eliminar

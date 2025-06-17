@@ -13,13 +13,17 @@ const ExerciseItem = ({ exercise, onDelete, onToggleComplete }) => {
       <span style={{ flexGrow: 1 }}>
         {exercise.name} - {exercise.type}
       </span>
-      <button 
-        className="delete-button"
-        onClick={() => onDelete(exercise.id)}
-        style={{ marginLeft: '10px' }}
-      >
-        Eliminar
-      </button>
+<button 
+  className="delete-button"
+  onClick={(e) => {
+    e.stopPropagation();
+    onDelete(exercise.id);
+  }}
+  style={{ marginLeft: '10px' }}
+>
+  Eliminar
+</button>
+
     </li>
   );
 };

@@ -22,11 +22,24 @@ const WeeklyPlan = ({ exercises, onToggleComplete, onRemoveExercise }) => {
                     <input 
                       type="checkbox" 
                       checked={exercise.completed} 
-                      onChange={() => onToggleComplete(exercise.id)} 
+                      onChange={(e) => {
+                        e.stopPropagation();
+                        onToggleComplete(exercise.id);
+                      }} 
                     />
-                    {exercise.name} - {exercise.type}
+                    <span className="exercise-text">
+                      {exercise.name} - {exercise.type}
+                    </span>
                   </div>
-                  <button className="delete-button" onClick={() => onRemoveExercise(exercise.id)}>Eliminar</button>
+                  <button 
+                    className="delete-button" 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      onRemoveExercise(exercise.id);
+                    }}
+                  >
+                    Eliminar
+                  </button>
                 </li>
               ))
             ) : (

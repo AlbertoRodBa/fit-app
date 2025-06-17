@@ -13,8 +13,8 @@ body {
 
 /* Animación de desvanecimiento */
 @keyframes fadeIn {
-  from { opacity: 0; } /* Comienza completamente transparente */
-  to { opacity: 1; } /* Termina completamente visible */
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
 /* Estilos de encabezados */
@@ -82,10 +82,25 @@ li {
   text-overflow: ellipsis; /* Muestra puntos suspensivos */
 }
 
-li.completed {
+
+/* Tachado solo al texto del ejercicio cuando está completado */
+li.completed .exercise-text { 
   text-decoration: line-through;
   color: #6d3fe2;
 }
+
+
+
+li.completed .exercise-text {
+  text-decoration: line-through;
+  color: #6d3fe2;
+}
+
+.delete-button {
+  text-decoration: none !important;
+  color: white;
+}
+
 
 /* Estilos del contenedor de la casilla de verificación */
 .checkbox-container {
