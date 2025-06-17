@@ -13,7 +13,7 @@ const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
     onAddExercise({ name, type, day }); // Añadir el día a los ejercicios
     setName('');
     setType('');
-    setDay('Lunes'); // Resetear al día por defecto
+    // setDay(''); No resetear valor al día por defecto
   };
 
   return (
