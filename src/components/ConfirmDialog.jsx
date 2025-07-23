@@ -1,4 +1,3 @@
-// ConfirmDialog.jsx
 import * as Dialog from "@radix-ui/react-dialog";
 
 export default function ConfirmDialog({
@@ -32,7 +31,7 @@ export default function ConfirmDialog({
               }}
               className="px-4 py-2 rounded bg-purple-700 hover:bg-purple-800 text-white"
             >
-              Confirmar
+              Continuar
             </button>
           </div>
         </Dialog.Content>
