@@ -68,7 +68,7 @@ const App = () => {
   return (
     <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors flex flex-col items-center px-4">
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
-      <div className="pt-20 w-full max-w-3xl">
+      <div className="pt-20 w-full max-w-3xl pb-24">
         <ExerciseForm
           onAddExercise={handleAddExercise}
           onResetExercises={handleResetExercises}
