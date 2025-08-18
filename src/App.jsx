@@ -3,6 +3,9 @@ import WeeklyPlan from "./components/WeeklyPlan";
 import ExerciseForm from "./components/ExerciseForm";
 import Navbar from "./components/Navbar";
 
+import Footer from "./components/Footer";
+import Timer from "./components/Timer"; 
+
 const App = () => {
   const [exercises, setExercises] = useState(() => {
     const storedExercises = localStorage.getItem("exercises");
@@ -12,6 +15,9 @@ const App = () => {
   const handleResetExercises = () => {
     setExercises([]);
   };
+
+  const [showTimer, setShowTimer] = useState(false);
+
 
   // Estado para el tema: 'light' o 'dark'
   const [theme, setTheme] = useState(() => {
@@ -82,6 +88,8 @@ const App = () => {
 />
 
       </div>
+          {showTimer && <Timer onClose={() => setShowTimer(false)} />}
+    <Footer onTimerClick={() => setShowTimer(true)} />
     </div>
   );
 };
