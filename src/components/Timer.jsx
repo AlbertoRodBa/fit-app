@@ -46,9 +46,9 @@ const Timer = ({ onClose }) => {
   </span>
 </div>
         <div className="flex gap-2 mb-4">
-          <button onClick={start} disabled={running} className="btn">Start</button>
-          <button onClick={stop} disabled={!running} className="btn">Stop</button>
-          <button onClick={reset} className="btn">Reset</button>
+          <button onClick={start} disabled={running} className="btn font-bold">Iniciar</button>
+          <button onClick={stop} disabled={!running} className="btn font-bold">Pausar</button>
+          <button onClick={reset} className="btn font-bold">Reset</button>
         </div>
         <button onClick={onClose} className="text-red-400 font-bold">Cerrar</button>
       </div>
