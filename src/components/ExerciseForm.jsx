@@ -17,6 +17,31 @@ const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
     "Domingo",
   ];
 
+  const exerciseNames = [
+    // Sugerencias de nombres de ejercicios
+    "Flexiones de brazos",
+    "Sentadillas",
+    "Press militar",
+    "Burpees",
+    "Abdominales",
+    "Saltos",
+    "Running",
+    "Hammer curls",
+    "Curls de bíceps",
+    "Remo con mancuernas",
+  ];
+
+  const muscleZones = [
+    // Sugerencias de zonas musculares
+    "Zona Abdominal",
+    "Zona Pectoral",
+    "Zona Piernas",
+    "Zona Brazos",
+    "Zona Espalda",
+    "Zona Hombros",
+    "Cardio",
+  ];
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name || !type) return;
@@ -49,7 +74,14 @@ const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
           onChange={(e) => setName(e.target.value)}
           required
           className="border border-gray-300 bg-white text-gray-800 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
+          list="exercise-names"
+          autoComplete="off"
         />
+        <datalist id="exercise-names">
+          {exerciseNames.map((ex) => (
+            <option key={ex} value={ex} />
+          ))}
+        </datalist>
         <input
           type="text"
           placeholder="Zona muscular"
@@ -57,7 +89,14 @@ const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
           onChange={(e) => setType(e.target.value)}
           required
           className="border border-gray-300 bg-white text-gray-800 rounded px-4 py-2 flex-grow mb-2 md:mb-0"
+          list="muscle-zones"
+          autoComplete="off"
         />
+        <datalist id="muscle-zones">
+          {muscleZones.map((zone) => (
+            <option key={zone} value={zone} />
+          ))}
+        </datalist>
         <select
           value={day}
           onChange={(e) => setDay(e.target.value)}
@@ -85,7 +124,7 @@ const ExerciseForm = ({ onAddExercise, onResetExercises }) => {
         </button>
       </div>
 
-      {/* Aquí insertas el modal */}
+      {/* Aquí insertar modal */}
       <ConfirmDialog
         open={modalOpen}
         onOpenChange={setModalOpen}
