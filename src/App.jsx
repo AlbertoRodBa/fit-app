@@ -4,7 +4,8 @@ import ExerciseForm from "./components/ExerciseForm";
 import Navbar from "./components/Navbar";
 
 import Footer from "./components/Footer";
-import Timer from "./components/Timer"; 
+import Timer from "./components/Timer";
+import InfoModal from "./components/InfoModal";
 
 const App = () => {
   const [exercises, setExercises] = useState(() => {
@@ -17,7 +18,7 @@ const App = () => {
   };
 
   const [showTimer, setShowTimer] = useState(false);
-
+  const [showInfo, setShowInfo] = useState(false);
 
   // Estado para el tema: 'light' o 'dark'
   const [theme, setTheme] = useState(() => {
@@ -64,7 +65,6 @@ const App = () => {
     const filtered = exercises.filter((ex) => ex.id !== id);
     setExercises(filtered);
   };
-
   return (
     <div className="min-h-screen bg-white text-black dark:bg-gray-900 dark:text-white transition-colors flex flex-col items-center px-4">
       <Navbar theme={theme} onToggleTheme={toggleTheme} />
@@ -73,23 +73,18 @@ const App = () => {
           onAddExercise={handleAddExercise}
           onResetExercises={handleResetExercises}
         />
-<WeeklyPlan
-  exercises={exercises}
-  onToggleComplete={(id) => {
-    const updated = exercises.map((ex) =>
-      ex.id === id ? { ...ex, completed: !ex.completed } : ex
-    );
-    setExercises(updated);
-  }}
-  onRemoveExercise={(id) => {
-    const filtered = exercises.filter((ex) => ex.id !== id);
-    setExercises(filtered);
-  }}
-/>
-
+        <WeeklyPlan
+          exercises={exercises}
+          onToggleComplete={handleToggleComplete}
+          onRemoveExercise={handleRemoveExercise}
+        />
       </div>
-          {showTimer && <Timer onClose={() => setShowTimer(false)} />}
-    <Footer onTimerClick={() => setShowTimer(true)} />
+      {showTimer && <Timer onClose={() => setShowTimer(false)} />}
+      <Footer
+        onTimerClick={() => setShowTimer(true)}
+        onInfoClick={() => setShowInfo(true)}
+      />
+      <InfoModal open={showInfo} onClose={() => setShowInfo(false)} />
     </div>
   );
 };
